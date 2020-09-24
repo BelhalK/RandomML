@@ -16,16 +16,16 @@ ratings = ratings.map(lambda x: {
 movies = movies.map(lambda x: x["movie_title"])
 
 class TwoTowerMovielensModel(tfrs.Model):
-	def __init__(self):
+	def __init__(self,embedding_dim,num_unique_users,num_unique_movies,eval_batch_size):
 	    # The `__init__` method sets up the model architecture.
 	    super().__init__()
 	 
 	    # How large the representation vectors are for inputs: larger vectors make
 	    # for a more expressive model but may cause over-fitting.
-	    embedding_dim = 32
-	    num_unique_users = 1000
-	    num_unique_movies = 1700
-	    eval_batch_size = 128
+	    self.embedding_dim = embedding_dim
+	    self.num_unique_users = num_unique_users
+	    self.num_unique_movies = num_unique_movies
+	    self.eval_batch_size = eval_batch_size
 
 
 	    # Set up user and movie representations.

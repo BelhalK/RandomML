@@ -21,7 +21,18 @@ movies = movies.map(lambda x: x["movie_title"])
 
 
 print("==> Creating Recommender Model...")
-model = TwoTowerMovielensModel()
+
+# Model arguments
+embedding_dim = 32
+num_unique_users = 1000
+num_unique_movies = 1700
+eval_batch_size = 128
+
+model = TwoTowerMovielensModel(embedding_dim,
+								num_unique_users,
+								num_unique_movies,
+								eval_batch_size
+								)
 model.compile(optimizer=tf.keras.optimizers.Adagrad(0.1))
  
 
