@@ -26,11 +26,13 @@ model.compile(optimizer=tf.keras.optimizers.Adagrad(0.1))
  
 
 print("==> Training Phase...")
-model.fit(ratings.batch(4096), verbose=False)
+bs = 4096 #batch size
+model.fit(ratings.batch(bs), verbose=False)
 
 
 index = tfrs.layers.ann.BruteForce(model.user_model)
-index.index(movies.batch(100).map(model.movie_model), movies)
+mb = 100 #movie batch size
+index.index(movies.batch(mb).map(model.movie_model), movies)
  
 
 # Get recommendations.
